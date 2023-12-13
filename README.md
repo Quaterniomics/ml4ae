@@ -25,13 +25,10 @@ Predictive modeling in biology involves creating algorithms to forecast biologic
 ### Objective
 To predict biological age from methylation data, employing a more sophisticated approach than traditional chronological age assessment. Elastic Net Regression (ENR) is a regularization technique used in linear regression models, particularly effective when dealing with highly correlated predictor variables. It combines the properties of both Ridge and Lasso regression, making it a versatile tool in statistical modeling and machine learning. This method is particularly useful in scenarios where the dataset has more features than observations or when features are highly correlated.
 
-## Mathematical Framework
-
+## Design
 Elastic Net aims to minimize the loss function by adding a penalty term that is a combination of the L1 and L2 norms of the coefficients. The loss function can be represented as:
 
-\[
-	ext{Minimize} \quad rac{1}{n} \sum_{i=1}^{n} (y_i - \sum_{j=1}^{p} x_{ij} eta_j)^2 + \lambda (lpha \sum_{j=1}^{p} |eta_j| + rac{1 - lpha}{2} \sum_{j=1}^{p} eta_j^2)
-\]
+$$ext{Minimize} \quad rac{1}{n} \sum_{i=1}^{n} (y_i - \sum_{j=1}^{p} x_{ij} eta_j)^2 + \lambda (lpha \sum_{j=1}^{p} |eta_j| + rac{1 - lpha}{2} \sum_{j=1}^{p} eta_j^2)$$
 
 where:
 - \( y_i \) is the observed outcome.
