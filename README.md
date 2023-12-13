@@ -28,14 +28,17 @@ To predict biological age from methylation data, employing a more sophisticated 
 ## Design
 Elastic Net aims to minimize the loss function by adding a penalty term that is a combination of the L1 and L2 norms of the coefficients. The loss function can be represented as:
 
-\$ext{Minimize} \$quad rac{1}{n} \$sum_{i=1}^{n} (y_i - \$sum_{j=1}^{p} x_{ij} eta_j)^2 + \$lambda (lpha \$sum_{j=1}^{p} |eta_j| + rac{1 - lpha}{2} \$sum_{j=1}^{p} eta_j^2)\$
+\[
+\text{Minimize} \quad \frac{1}{n} \sum_{i=1}^{n} (y_i - \sum_{j=1}^{p} x_{ij} \beta_j)^2 + \lambda (\alpha \sum_{j=1}^{p} |\beta_j| + \frac{1 - \alpha}{2} \sum_{j=1}^{p} \beta_j^2)
+\]
 
 where:
-- ( \$y_i\$ ) is the observed outcome.
-- ( \$x_{ij}\$ ) represents the predictor variables.
-- ( \$eta_j\$ ) are the coefficients to be estimated.
-- ( \$lambda\$ ) is the regularization parameter that controls the strength of the penalty.
-- ( \$lpha\$ ) is the mixing parameter that balances between Ridge (\( lpha = 0 \)) and Lasso (\( lpha = 1 \)) penalties.
+
+- \$ y_i \$ is the observed outcome.
+- \$ x_{ij} \$ represents the predictor variables.
+- \$ \beta_j \$ are the coefficients to be estimated.
+- \$ \lambda \$ is the regularization parameter that controls the strength of the penalty.
+- \$ \alpha \$ is the mixing parameter that balances between Ridge (\$ \alpha = 0 \$) and Lasso (\$ \alpha = 1 \$) penalties.
 
 ## Algorithms & Implementation
 
@@ -85,24 +88,26 @@ The identification of distinct clusters underscores the potential of methylation
 
 
 
-## Introduction
+# 3D UMAP: A Technical and Rigorous Overview
 
+## Introduction
 Uniform Manifold Approximation and Projection (UMAP) is a novel dimensionality reduction technique that has gained prominence in the field of data science, particularly in biomedical research. UMAP excels in preserving both the local and global structure of high-dimensional data, making it a powerful tool for visualizing complex datasets such as those encountered in genomics, proteomics, and other areas of biomedical research. Unlike traditional methods like Principal Component Analysis (PCA), UMAP is rooted in the mathematical framework of topology and manifold learning, providing a more nuanced understanding of the intrinsic geometry of data.
 
 ## Mathematical Framework
-
-UMAP's foundation lies in Riemannian geometry and algebraic topology, specifically in the concept of Riemannian manifolds and simplicial complexes. The algorithm assumes that the data is sampled from a manifold \( \mathcal{M} \) embedded in a high-dimensional Euclidean space \( \mathbb{R}^n \). The goal is to find a low-dimensional representation of this manifold in \( \mathbb{R}^d \) (with \( d << n \)), which preserves its topological structure.
+UMAP's foundation lies in Riemannian geometry and algebraic topology, specifically in the concept of Riemannian manifolds and simplicial complexes. The algorithm assumes that the data is sampled from a manifold (\$\mathcal{M}\$) embedded in a high-dimensional Euclidean space (\$\mathbb{R}^n\$). The goal is to find a low-dimensional representation of this manifold in (\$\mathbb{R}^d\$) (with \$d << n\$), which preserves its topological structure.
 
 The mathematical steps can be summarized as follows:
 
-1. **Fuzzy Topological Representation**: UMAP starts by constructing a weighted graph representing the high-dimensional data. Each point is connected to its nearest neighbors based on a chosen metric (e.g., Euclidean distance). These connections are weighted using a fuzzy set membership strength, reflecting the probability of points being connected in the underlying manifold.
+### Fuzzy Topological Representation
+UMAP starts by constructing a weighted graph representing the high-dimensional data. Each point is connected to its nearest neighbors based on a chosen metric (e.g., Euclidean distance). These connections are weighted using a fuzzy set membership strength, reflecting the probability of points being connected in the underlying manifold.
 
-2. **Simplicial Complex Construction**: UMAP utilizes simplicial sets, a concept from algebraic topology, to create an abstract simplicial complex that approximates the high-dimensional topological structure of the data. 
+### Simplicial Complex Construction
+UMAP utilizes simplicial sets, a concept from algebraic topology, to create an abstract simplicial complex that approximates the high-dimensional topological structure of the data.
 
-3. **Optimization**: The low-dimensional representation is obtained by optimizing the layout of this simplicial complex in the lower-dimensional space. This is achieved through a stochastic gradient descent process that minimizes the cross-entropy between the high-dimensional and low-dimensional fuzzy topological representations.
+### Optimization
+The low-dimensional representation is obtained by optimizing the layout of this simplicial complex in the lower-dimensional space. This is achieved through a stochastic gradient descent process that minimizes the cross-entropy between the high-dimensional and low-dimensional fuzzy topological representations.
 
 ## Algorithms & Information Theory
-
 The UMAP algorithm can be broken down into three main components:
 
 1. **Neighbor Search**: Identifying nearest neighbors for each point in the dataset, which can be efficiently performed using tree-based search algorithms or approximate nearest neighbor methods.
@@ -114,25 +119,21 @@ The UMAP algorithm can be broken down into three main components:
 In terms of information theory, UMAP's optimization process can be viewed as minimizing the cross-entropy between two fuzzy topological representations (high-dimensional and low-dimensional), aligning with the principle of minimum information loss.
 
 ## 3D UMAP and Biomedical Research
-
 In biomedical research, 3D UMAP becomes particularly relevant due to its ability to handle complex, high-dimensional data such as gene expression profiles or protein interaction networks. Its application can be seen in:
 
-1. **Single-cell Genomics**: To visualize and cluster single-cell RNA-seq data, providing insights into cell differentiation processes.
-
-2. **Proteomics**: For understanding complex protein interaction networks and functional clustering.
-
-3. **Drug Discovery**: In the identification of molecular substructures and clustering of chemical compounds.
+- **Single-cell Genomics**: To visualize and cluster single-cell RNA-seq data, providing insights into cell differentiation processes.
+- **Proteomics**: For understanding complex protein interaction networks and functional clustering.
+- **Drug Discovery**: In the identification of molecular substructures and clustering of chemical compounds.
 
 ## Interactive 3D UMAP
-
 Interactive 3D UMAP visualizations enhance the user's ability to explore and interpret the complex relationships in the data. Tools like Plotly or Bokeh can be used to create interactive plots that allow rotation, zooming, and tooltip information, providing a more intuitive understanding of the data's structure.
 
 ## Conclusion
-
 UMAP's robust mathematical foundation, combined with its flexibility and efficiency, makes it a valuable tool in biomedical research, enabling deeper insights into complex biological systems. Its ability to retain both local and global data structures in a lower-dimensional space opens up new avenues for data exploration and hypothesis generation in the biomedical field.
 
+## Overall Conclusion
+The integration of predictive modeling, clustering techniques, and visualization tools in R offers a comprehensive approach to studying epigenetics in the context of aging and tissue-specific research.
 
-### Conclusions
 These visualizations provide valuable insights into methylation patterns, enhancing our understanding of the epigenetic landscape in muscle tissue aging.
 
 ## Overall Conclusion
