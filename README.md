@@ -79,7 +79,7 @@ The identification of distinct clusters underscores the potential of methylation
 
 ## Analysis 3: 3D UMAP Visualization
 
-# 3D UMAP: A Technical and Rigorous Overview
+
 
 
 
@@ -95,6 +95,7 @@ Uniform Manifold Approximation and Projection (UMAP) is a novel dimensionality r
 
 ## Mathematical Framework
 UMAP's foundation lies in Riemannian geometry and algebraic topology, specifically in the concept of Riemannian manifolds and simplicial complexes. The algorithm assumes that the data is sampled from a manifold (\$\mathcal{M}\$) embedded in a high-dimensional Euclidean space (\$\mathbb{R}^n\$). The goal is to find a low-dimensional representation of this manifold in (\$\mathbb{R}^d\$) (with \$d << n\$), which preserves its topological structure.
+![3D UMAP cost function formula](https://github.com/Quaterniomics/ml4ae/assets/111631655/8e4c2a67-1519-40bc-9fe0-0cc7b20bf5cd)
 
 The mathematical steps can be summarized as follows:
 
