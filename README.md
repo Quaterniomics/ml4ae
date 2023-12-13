@@ -79,7 +79,7 @@ The identification of distinct clusters underscores the potential of methylation
 
 ## Analysis 3: 3D UMAP Visualization
 
-
+# 3D UMAP: A Technical and Rigorous Overview
 
 
 
@@ -95,15 +95,21 @@ Uniform Manifold Approximation and Projection (UMAP) is a novel dimensionality r
 
 ## Mathematical Framework
 UMAP's foundation lies in Riemannian geometry and algebraic topology, specifically in the concept of Riemannian manifolds and simplicial complexes. The algorithm assumes that the data is sampled from a manifold (\$\mathcal{M}\$) embedded in a high-dimensional Euclidean space (\$\mathbb{R}^n\$). The goal is to find a low-dimensional representation of this manifold in (\$\mathbb{R}^d\$) (with \$d << n\$), which preserves its topological structure.
-![3D UMAP cost function formula](https://github.com/Quaterniomics/ml4ae/assets/111631655/8e4c2a67-1519-40bc-9fe0-0cc7b20bf5cd)
 
 The mathematical steps can be summarized as follows:
 
 ### Fuzzy Topological Representation
 UMAP starts by constructing a weighted graph representing the high-dimensional data. Each point is connected to its nearest neighbors based on a chosen metric (e.g., Euclidean distance). These connections are weighted using a fuzzy set membership strength, reflecting the probability of points being connected in the underlying manifold.
 
+![image](https://github.com/Quaterniomics/ml4ae/assets/111631655/5f11633d-6f41-4a72-a447-87b95c0fb227)
+
+
 ### Simplicial Complex Construction
 UMAP utilizes simplicial sets, a concept from algebraic topology, to create an abstract simplicial complex that approximates the high-dimensional topological structure of the data.
+
+![image](https://github.com/Quaterniomics/ml4ae/assets/111631655/e2d80b06-f898-498d-abe0-e42447b9ac14)
+
+![image](https://github.com/Quaterniomics/ml4ae/assets/111631655/56c83564-b393-4335-be53-534ac8dfdaa3)
 
 ### Optimization
 The low-dimensional representation is obtained by optimizing the layout of this simplicial complex in the lower-dimensional space. This is achieved through a stochastic gradient descent process that minimizes the cross-entropy between the high-dimensional and low-dimensional fuzzy topological representations.
