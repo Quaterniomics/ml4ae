@@ -27,9 +27,9 @@ To predict biological age from methylation data, employing a more sophisticated 
 Elastic Net Regression, combining the strengths of Lasso and Ridge regression techniques, is utilized for this purpose. This method is particularly effective in handling the complex and high-dimensional nature of methylation data.
 
 ### LaTeX Representation
-\```
+\$
 min β { N1 ∑ i=1N (yi −xiT β)2 +λ[α∥β∥1 + 12 (1−α)∥β∥22 ]}
-\```
+\$
 
 ### Conclusions
 This analysis has been effective in identifying key methylation sites that serve as significant predictors of biological age, demonstrating the power of machine learning in epigenetic research.
@@ -43,9 +43,9 @@ To classify muscle tissue samples based on their epigenetic patterns, shedding l
 K-means clustering is employed to categorize samples into distinct groups, revealing unique methylation patterns indicative of various aging states.
 
 ### LaTeX Representation
-\```
+\$
 min S ∑ i=1k ∑ x∈Si ∥x−μi∥2
-\```
+\$
 
 ### Conclusions
 The identification of distinct clusters underscores the potential of methylation data in understanding tissue-specific aging dynamics and epigenetic variations.
