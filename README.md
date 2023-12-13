@@ -1,4 +1,6 @@
-# ml4ae
+# ml4ae (december 3, 2023)
+# mtae.R [MTAEv1.0.01] (release: december 12, 2023)
+# MTAEv1.2.0 (release: 2023 TBA via X+Link+Temple_Bioinformatics Seminar Studio)
 machine learning for epigenetic age estimation (biological age predictive model)
 
 # Statistical Analysis of Biological Age Using GTEx Muscle Tissue Methylation Data
@@ -21,11 +23,40 @@ Predictive modeling in biology involves creating algorithms to forecast biologic
 ## Analysis 1: Elastic Net Regression
 
 ### Objective
-To predict biological age from methylation data, employing a more sophisticated approach than traditional chronological age assessment.
+To predict biological age from methylation data, employing a more sophisticated approach than traditional chronological age assessment. Elastic Net Regression (ENR) is a regularization technique used in linear regression models, particularly effective when dealing with highly correlated predictor variables. It combines the properties of both Ridge and Lasso regression, making it a versatile tool in statistical modeling and machine learning. This method is particularly useful in scenarios where the dataset has more features than observations or when features are highly correlated.
 
-### Method
-Elastic Net Regression, combining the strengths of Lasso and Ridge regression techniques, is utilized for this purpose. This method is particularly effective in handling the complex and high-dimensional nature of methylation data.
+## Mathematical Framework
 
+Elastic Net aims to minimize the loss function by adding a penalty term that is a combination of the L1 and L2 norms of the coefficients. The loss function can be represented as:
+
+\[
+	ext{Minimize} \quad rac{1}{n} \sum_{i=1}^{n} (y_i - \sum_{j=1}^{p} x_{ij} eta_j)^2 + \lambda (lpha \sum_{j=1}^{p} |eta_j| + rac{1 - lpha}{2} \sum_{j=1}^{p} eta_j^2)
+\]
+
+where:
+- \( y_i \) is the observed outcome.
+- \( x_{ij} \) represents the predictor variables.
+- \( eta_j \) are the coefficients to be estimated.
+- \( \lambda \) is the regularization parameter that controls the strength of the penalty.
+- \( lpha \) is the mixing parameter that balances between Ridge (\( lpha = 0 \)) and Lasso (\( lpha = 1 \)) penalties.
+
+## Algorithms & Implementation
+
+1. **Coefficient Estimation**: The coefficients \( eta_j \) are estimated using numerical optimization techniques like coordinate descent. This involves iteratively optimizing the objective function with respect to each coefficient while holding others fixed.
+
+2. **Regularization Path**: Elastic Net typically involves computing a path of solutions for a sequence of \( \lambda \) values, allowing for a choice of tuning parameters based on cross-validation.
+
+3. **Feature Selection**: Unlike Ridge regression, Elastic Net can perform feature selection due to its Lasso component, which can shrink some coefficients to zero.
+
+## Use Cases in Data Science
+
+Elastic Net Regression finds application in various fields:
+
+1. **Genomics**: For gene selection in high-dimensional genomic data, where the number of predictors (genes) far exceeds the number of observations (samples).
+
+2. **Finance**: In risk modeling and portfolio optimization, where predictors (market indicators) are often highly correlated.
+
+3. **Image Processing**: For image reconstruction and noise reduction, where pixels are often correlated.
 ### LaTeX Representation
 \$min β { N1 ∑ i=1N (yi −xiT β)2 +λ[α∥β∥1 + 12 (1−α)∥β∥22 ]}\$
 
@@ -48,14 +79,61 @@ The identification of distinct clusters underscores the potential of methylation
 
 ## Analysis 3: 3D UMAP Visualization
 
-### Objective
-To visually represent the methylation data, aiding in the interpretation of complex epigenetic patterns related to aging.
+# 3D UMAP: A Technical and Rigorous Overview
 
-### Method
-UMAP (Uniform Manifold Approximation and Projection) is used for dimensionality reduction, transforming high-dimensional methylation data into a comprehensible 3D format.
 
-### LaTeX Representation
-UMAP's formulation involves complex topological concepts, which are not easily encapsulated in a single equation.
+
+
+
+
+
+
+## Introduction
+
+Uniform Manifold Approximation and Projection (UMAP) is a novel dimensionality reduction technique that has gained prominence in the field of data science, particularly in biomedical research. UMAP excels in preserving both the local and global structure of high-dimensional data, making it a powerful tool for visualizing complex datasets such as those encountered in genomics, proteomics, and other areas of biomedical research. Unlike traditional methods like Principal Component Analysis (PCA), UMAP is rooted in the mathematical framework of topology and manifold learning, providing a more nuanced understanding of the intrinsic geometry of data.
+
+## Mathematical Framework
+
+UMAP's foundation lies in Riemannian geometry and algebraic topology, specifically in the concept of Riemannian manifolds and simplicial complexes. The algorithm assumes that the data is sampled from a manifold \( \mathcal{M} \) embedded in a high-dimensional Euclidean space \( \mathbb{R}^n \). The goal is to find a low-dimensional representation of this manifold in \( \mathbb{R}^d \) (with \( d << n \)), which preserves its topological structure.
+
+The mathematical steps can be summarized as follows:
+
+1. **Fuzzy Topological Representation**: UMAP starts by constructing a weighted graph representing the high-dimensional data. Each point is connected to its nearest neighbors based on a chosen metric (e.g., Euclidean distance). These connections are weighted using a fuzzy set membership strength, reflecting the probability of points being connected in the underlying manifold.
+
+2. **Simplicial Complex Construction**: UMAP utilizes simplicial sets, a concept from algebraic topology, to create an abstract simplicial complex that approximates the high-dimensional topological structure of the data. 
+
+3. **Optimization**: The low-dimensional representation is obtained by optimizing the layout of this simplicial complex in the lower-dimensional space. This is achieved through a stochastic gradient descent process that minimizes the cross-entropy between the high-dimensional and low-dimensional fuzzy topological representations.
+
+## Algorithms & Information Theory
+
+The UMAP algorithm can be broken down into three main components:
+
+1. **Neighbor Search**: Identifying nearest neighbors for each point in the dataset, which can be efficiently performed using tree-based search algorithms or approximate nearest neighbor methods.
+
+2. **Graph Layout Optimization**: The stochastic gradient descent process to optimize the embedding. This step is crucial for preserving the topological structure and involves balancing attractive and repulsive forces between points in the lower-dimensional space.
+
+3. **Initialization**: Often, UMAP uses spectral initialization (like in Laplacian Eigenmaps) to start the optimization process.
+
+In terms of information theory, UMAP's optimization process can be viewed as minimizing the cross-entropy between two fuzzy topological representations (high-dimensional and low-dimensional), aligning with the principle of minimum information loss.
+
+## 3D UMAP and Biomedical Research
+
+In biomedical research, 3D UMAP becomes particularly relevant due to its ability to handle complex, high-dimensional data such as gene expression profiles or protein interaction networks. Its application can be seen in:
+
+1. **Single-cell Genomics**: To visualize and cluster single-cell RNA-seq data, providing insights into cell differentiation processes.
+
+2. **Proteomics**: For understanding complex protein interaction networks and functional clustering.
+
+3. **Drug Discovery**: In the identification of molecular substructures and clustering of chemical compounds.
+
+## Interactive 3D UMAP
+
+Interactive 3D UMAP visualizations enhance the user's ability to explore and interpret the complex relationships in the data. Tools like Plotly or Bokeh can be used to create interactive plots that allow rotation, zooming, and tooltip information, providing a more intuitive understanding of the data's structure.
+
+## Conclusion
+
+UMAP's robust mathematical foundation, combined with its flexibility and efficiency, makes it a valuable tool in biomedical research, enabling deeper insights into complex biological systems. Its ability to retain both local and global data structures in a lower-dimensional space opens up new avenues for data exploration and hypothesis generation in the biomedical field.
+
 
 ### Conclusions
 These visualizations provide valuable insights into methylation patterns, enhancing our understanding of the epigenetic landscape in muscle tissue aging.
