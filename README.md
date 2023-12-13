@@ -28,14 +28,14 @@ To predict biological age from methylation data, employing a more sophisticated 
 ## Design
 Elastic Net aims to minimize the loss function by adding a penalty term that is a combination of the L1 and L2 norms of the coefficients. The loss function can be represented as:
 
-$$ext{Minimize} \quad rac{1}{n} \sum_{i=1}^{n} (y_i - \sum_{j=1}^{p} x_{ij} eta_j)^2 + \lambda (lpha \sum_{j=1}^{p} |eta_j| + rac{1 - lpha}{2} \sum_{j=1}^{p} eta_j^2)$$
+\$ext{Minimize} \$quad rac{1}{n} \$sum_{i=1}^{n} (y_i - \$sum_{j=1}^{p} x_{ij} eta_j)^2 + \$lambda (lpha \$sum_{j=1}^{p} |eta_j| + rac{1 - lpha}{2} \$sum_{j=1}^{p} eta_j^2)\$
 
 where:
-- \( y_i \) is the observed outcome.
-- \( x_{ij} \) represents the predictor variables.
-- \( eta_j \) are the coefficients to be estimated.
-- \( \lambda \) is the regularization parameter that controls the strength of the penalty.
-- \( lpha \) is the mixing parameter that balances between Ridge (\( lpha = 0 \)) and Lasso (\( lpha = 1 \)) penalties.
+- ( \$y_i\$ ) is the observed outcome.
+- ( \$x_{ij}\$ ) represents the predictor variables.
+- ( \$eta_j\$ ) are the coefficients to be estimated.
+- ( \$lambda\$ ) is the regularization parameter that controls the strength of the penalty.
+- ( \$lpha\$ ) is the mixing parameter that balances between Ridge (\( lpha = 0 \)) and Lasso (\( lpha = 1 \)) penalties.
 
 ## Algorithms & Implementation
 
