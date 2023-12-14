@@ -1,9 +1,17 @@
 # ml4ae (december 3, 2023)
-# mtae.R [MTAEv1.0.01] (release: december 12, 2023)
-# MTAEv1.2.0 (release: 2023 TBA via X+Link+Temple_Bioinformatics Seminar Studio)
+# tae.R [MTAEv1.0.01] (release: december 12, 2023)
+# next: MTAE v1.2.0 (release: 2023 TBA via X+Link+Temple_Bioinformatics Seminar Studio)
 machine learning for epigenetic age estimation (biological age predictive model)
 
 # Statistical Analysis of Biological Age Using GTEx Muscle Tissue Methylation Data
+
+# Abstract
+
+This comprehensive report presents a multi-faceted approach to understanding biological age using GTEx muscle tissue methylation data, employing advanced computational and statistical methods. The study is grounded in the premise that biological age, influenced by genetic, environmental, and lifestyle factors, can be more accurately estimated using methylation patterns than chronological age alone. The research employs R for sophisticated data analysis, focusing on three core methods: Elastic Net Regression (ENR), Unsupervised Classification via K-means clustering, and 3D Uniform Manifold Approximation and Projection (UMAP) visualization.
+
+ENR, blending Ridge and Lasso regression, effectively predicts biological age from methylation data, overcoming challenges posed by high-dimensional genomic datasets. K-means clustering classifies muscle tissue samples based on epigenetic patterns, providing insights into tissue-specific aging processes. Lastly, 3D UMAP, rooted in Riemannian geometry and algebraic topology, offers a novel dimensionality reduction technique, enabling the visualization of complex, high-dimensional data in a way that preserves both local and global data structures.
+
+This integrative approach not only advances the field of epigenetic age estimation but also highlights the potential of machine learning and AI in biomedical research. By leveraging these computational techniques, the study offers deeper insights into the aging process, emphasizing the role of methylation as a key biomarker in biological age prediction and tissue-specific aging dynamics. The use of R as a platform for these analyses underscores its capability in handling complex genomic data, facilitating a comprehensive understanding of biological aging in the context of epigenetics.
 
 ## Introduction
 NOTE: As of August 2023, informaticist Joseph Campagna's current role as @Temple_Bioinfo Vice President Figurehead & X+Link+Github Media Coordination Lead makes this github repository an active & open-source way to contribute to Temple University Bioinformatics Summer 2024 workshop, which will be a form of digital course freeware in the name of #DeSci, #OpenScience, and the decentralized en masse distribution of scientific toolkits for hypothesis-formulation, simulation, experiment, inference, generative, analysis, etc., as well as the genuinely curious who simply do not have access to university education.
@@ -15,9 +23,6 @@ The pursuit of accurate age estimation has evolved significantly, particularly i
 ![image](https://github.com/Quaterniomics/ml4ae/assets/111631655/7098cf37-4e60-4aea-98b5-4f387adf7be4)
 
 where M and U are the methylated and unmethylated intensities, respectively, and α is a constant, typically 100, added to stabilize the ratio in cases of low intensity. In the context of AI and data science, the challenge lies in developing models that can effectively interpret these methylation patterns with minimal data, complexity, and error. The goal is to optimize the balance between the comprehensiveness of the model and the practicality of its application. R, with its robust statistical and data processing capabilities, provides an ideal platform for this endeavor. A basic R snippet to calculate beta values from raw methylation data might look like:
-
-## Abstract
-In this study, we explore the realm of epigenetic age estimators, particularly focusing on DNA methylation patterns as indicators of biological age. By analyzing GTEx muscle tissue methylation data, we aim to predict biological age, which is distinct from chronological age, and classify tissue types based on their epigenetic signatures. This approach integrates genomics, artificial intelligence, and statistical modeling to provide a comprehensive understanding of age-related changes at the molecular level.
 
 ## Background on Epigenetic Age Estimators
 Epigenetic age estimators have significantly contributed to our understanding of the biological aging process. Unlike chronological age, biological age reflects an individual's physiological state, influenced by genetic, environmental, and lifestyle factors. DNA methylation, a key epigenetic mechanism, changes predictably with age and serves as a robust biomarker in age estimation studies.
@@ -37,16 +42,11 @@ To predict biological age from methylation data, employing a more sophisticated 
 Elastic Net aims to minimize the loss function by adding a penalty term that is a combination of the L1 and L2 norms of the coefficients. The loss function can be represented as:
 
 \[
-\text{Minimize} \quad \frac{1}{n} \sum_{i=1}^{n} (y_i - \sum_{j=1}^{p} x_{ij} \beta_j)^2 + \lambda (\alpha \sum_{j=1}^{p} |\beta_j| + \frac{1 - \alpha}{2} \sum_{j=1}^{p} \beta_j^2)
+\text{Minimize: } L(\beta) = \sum_{i=1}^{n} (y_i - x_i^T\beta)^2 + \lambda \left( \frac{1-\alpha}{2} \|\beta\|_2^2 + \alpha \|\beta\|_1 \right)
 \]
 
-where:
+![image](https://github.com/Quaterniomics/ml4ae/assets/111631655/ea4cab82-a148-4712-b81d-89ba2a34d1c4)
 
-- \$ y_i \$ is the observed outcome.
-- \$ x_{ij} \$ represents the predictor variables.
-- \$ \beta_j \$ are the coefficients to be estimated.
-- \$ \lambda \$ is the regularization parameter that controls the strength of the penalty.
-- \$ \alpha \$ is the mixing parameter that balances between Ridge (\$ \alpha = 0 \$) and Lasso (\$ \alpha = 1 \$) penalties.
 
 ## Algorithms & Implementation
 
