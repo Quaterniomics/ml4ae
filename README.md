@@ -33,7 +33,12 @@ The intersection of genomics and AI has revolutionized the field of biological a
 ## Predictive Modeling and Model-Building in Biology
 Predictive modeling in biology involves creating algorithms to forecast biological states or outcomes based on genomic data. This process requires a blend of biological knowledge, statistical techniques, and computational proficiency. In the context of age estimation, these models interpret methylation data to provide accurate assessments of biological age.
 
-## Analysis 1: Elastic Net Regression
+## Analysis 1: Differential Methylation for Identifying Feature Salience
+--fill this in. here is my output below--
+![image](https://github.com/Quaterniomics/ml4ae/assets/111631655/86bb1e77-0233-4222-8636-d0b809af4ffd)
+
+
+## Analysis 2: Elastic Net Regression
 
 ### Objective
 To predict biological age from methylation data, employing a more sophisticated approach than traditional chronological age assessment. Elastic Net Regression (ENR) is a regularization technique used in linear regression models, particularly effective when dealing with highly correlated predictor variables. It combines the properties of both Ridge and Lasso regression, making it a versatile tool in statistical modeling and machine learning. This method is particularly useful in scenarios where the dataset has more features than observations or when features are highly correlated.
@@ -70,7 +75,7 @@ Elastic Net Regression finds application in various fields:
 ### Conclusions
 This analysis has been effective in identifying key methylation sites that serve as significant predictors of biological age, demonstrating the power of machine learning in epigenetic research.
 
-## Analysis 2: Unsupervised Classification
+## Analysis rm2: Unsupervised Classification
 
 ### Objective
 To classify muscle tissue samples based on their epigenetic patterns, shedding light on tissue-specific aging processes.
