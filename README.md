@@ -41,9 +41,8 @@ To predict biological age from methylation data, employing a more sophisticated 
 ## Design
 Elastic Net aims to minimize the loss function by adding a penalty term that is a combination of the L1 and L2 norms of the coefficients. The loss function can be represented as:
 
-\[
-\text{Minimize: } L(\beta) = \sum_{i=1}^{n} (y_i - x_i^T\beta)^2 + \lambda \left( \frac{1-\alpha}{2} \|\beta\|_2^2 + \alpha \|\beta\|_1 \right)
-\]
+![The elastic net regression model's loss function](https://github.com/Quaterniomics/ml4ae/assets/111631655/feaf0f0a-153d-41f1-9931-0d970afa8875)
+
 
 ![image](https://github.com/Quaterniomics/ml4ae/assets/111631655/ea4cab82-a148-4712-b81d-89ba2a34d1c4)
 
