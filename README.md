@@ -94,25 +94,6 @@ Elastic Net Regression finds application in various fields:
 ### Conclusions
 This analysis has been effective in identifying key methylation sites that serve as significant predictors of biological age, demonstrating the power of machine learning in epigenetic research.
 
-## Analysis rm2: Unsupervised Classification
-
-### Objective
-To classify muscle tissue samples based on their epigenetic patterns, shedding light on tissue-specific aging processes.
-
-### Method
-K-means clustering is employed to categorize samples into distinct groups, revealing unique methylation patterns indicative of various aging states.
-
-### LaTeX Representation
-
-\$min S ∑ i=1k ∑ x∈Si ∥x−μi∥2\$
-
-### Conclusions
-The identification of distinct clusters underscores the potential of methylation data in understanding tissue-specific aging dynamics and epigenetic variations.
-
-## Analysis 3: 3D UMAP Visualization
-
-
-
 
 # UMAP THEORY: A Technical and Rigorous Overview
 
