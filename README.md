@@ -96,13 +96,14 @@ The identification of distinct clusters underscores the potential of methylation
 
 
 
-# 3D UMAP: A Technical and Rigorous Overview
+# UMAP THEORY: A Technical and Rigorous Overview
 
 ## Introduction
 Uniform Manifold Approximation and Projection (UMAP) is a novel dimensionality reduction technique that has gained prominence in the field of data science, particularly in biomedical research. UMAP excels in preserving both the local and global structure of high-dimensional data, making it a powerful tool for visualizing complex datasets such as those encountered in genomics, proteomics, and other areas of biomedical research. Unlike traditional methods like Principal Component Analysis (PCA), UMAP is rooted in the mathematical framework of topology and manifold learning, providing a more nuanced understanding of the intrinsic geometry of data.
 
 ## Mathematical Framework
 UMAP's foundation lies in Riemannian geometry and algebraic topology, specifically in the concept of Riemannian manifolds and simplicial complexes. The algorithm assumes that the data is sampled from a manifold (\$\mathcal{M}\$) embedded in a high-dimensional Euclidean space (\$\mathbb{R}^n\$). The goal is to find a low-dimensional representation of this manifold in (\$\mathbb{R}^d\$) (with \$d << n\$), which preserves its topological structure.
+![image](https://github.com/Quaterniomics/ml4ae/assets/111631655/5b77916d-b00c-466d-a466-5061655ca773)
 
 The mathematical steps can be summarized as follows:
 
@@ -145,6 +146,7 @@ In biomedical research, 3D UMAP becomes particularly relevant due to its ability
 
 ## Interactive 3D UMAP
 Interactive 3D UMAP visualizations enhance the user's ability to explore and interpret the complex relationships in the data. Tools like Plotly or Bokeh can be used to create interactive plots that allow rotation, zooming, and tooltip information, providing a more intuitive understanding of the data's structure.
+![image](https://github.com/Quaterniomics/ml4ae/assets/111631655/155972d7-952a-439f-ad82-765a5e419a4b)
 
 ## Conclusion
 UMAP's robust mathematical foundation, combined with its flexibility and efficiency, makes it a valuable tool in biomedical research, enabling deeper insights into complex biological systems. Its ability to retain both local and global data structures in a lower-dimensional space opens up new avenues for data exploration and hypothesis generation in the biomedical field.
