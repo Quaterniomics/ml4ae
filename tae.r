@@ -1,4 +1,4 @@
-#MTAER: Methylation-based Tissue Age Estimation in R ( software developed by Joseph Anthony Campagna TUID915291684 )
+#MTAER: Methylation-based Tissue Age Estimation in R (software developed by Joseph Anthony Campagna TUID915291684)
 # Biostatistics with R
 # Date: 12/12/2023
 # Time: 11:45 PM ET
@@ -17,18 +17,13 @@ library(glmnet)
 anno_data_path <- 'GTEx_Muscle.anno.csv'
 anno_data <- read.csv(anno_data_path, sep = '\t', header = TRUE, stringsAsFactors = FALSE)
 
-# Convert age range strings to lower bound integers
-anno_data$age <- as.numeric(sapply(strsplit(as.character(anno_data$age), "-"), `[`, 1))
-
 # Transpose the data and set the first row as column headers
 anno_data_transposed <- as.data.frame(t(anno_data))
 colnames(anno_data_transposed) <- anno_data_transposed[1, ]
 anno_data_transposed <- anno_data_transposed[-1, ]
 
-# Convert character data to numeric where appropriate
-anno_data_transposed$age <- as.numeric(sub("-.*", "", anno_data_transposed$age))
-anno_data_transposed$Sex <- ifelse(anno_data_transposed$Sex == '1', 1, 0)
-anno_data_transposed$smoker_status <- ifelse(anno_data_transposed$smoker_status %in% c('Non-smoker', NA), 0, 1)
+# Convert age range strings to lower bound integers
+anno_data_transposed$age <- as.numeric(sapply(strsplit(as.character(anno_data_transposed$age), "-"), `[`, 1))
 
 # Sort the data by 'Sex' and 'age'
 sorted_data <- anno_data_transposed %>% 
@@ -36,7 +31,7 @@ sorted_data <- anno_data_transposed %>%
 
 # Load methylation data and merge with annotation data
 meth_data_path <- 'GTEX_Muscle.meth.csv'
-meth_data <- read_csv(meth_data_path, col_types = cols(.default = col_double()))
+meth_data <- read.csv(meth_data_path, sep = '\t', header = TRUE)
 meth_data_transposed <- as.data.frame(t(meth_data))
 colnames(meth_data_transposed) <- meth_data_transposed[1, ]
 meth_data_transposed <- meth_data_transposed[-1, ]
@@ -57,14 +52,24 @@ cpg_columns <- colnames(cpg_data)
 results <- list()
 
 for (col in cpg_columns) {
+  print(paste("Processing column:", col))
   group1_values <- group1_data[, col, drop = FALSE]
   group2_values <- group2_data[, col, drop = FALSE]
   
-  t_test_result <- t.test(group1_values, group2_values, na.rm = TRUE)
-  mean_diff <- mean(group1_values, na.rm = TRUE) - mean(group2_values, na.rm = TRUE)
-  
-  results[[col]] <- list(mean_diff = mean_diff, p_val = t_test_result$p.value)
+  # Check if values are numeric and have sufficient variance
+  if (is.numeric(group1_values) && is.numeric(group2_values) && 
+      var(group1_values, na.rm = TRUE) > 0 && var(group2_values, na.rm = TRUE) > 0) {
+    
+    t_test_result <- t.test(group1_values, group2_values, na.rm = TRUE)
+    mean_diff <- mean(group1_values, na.rm = TRUE) - mean(group2_values, na.rm = TRUE)
+    
+    results[[col]] <- list(mean_diff = mean_diff, p_val = t_test_result$p.value)
+  } else {
+    # Handle non-numeric data or insufficient variance
+    results[[col]] <- list(mean_diff = NA, p_val = NA)
+  }
 }
+
 
 # Convert results to a data frame and sort by mean_diff
 diff_methylation_df <- do.call(rbind, lapply(results, data.frame, stringsAsFactors = FALSE))
@@ -93,37 +98,19 @@ pheatmap(as.matrix(selected_data_age_filtered[, -1]),
          color = colorRampPalette(c("blue", "white", "red"))(100),
          labels_row = selected_data_age_filtered$`row.names`)
 
-# Bar plot of differential methylation; age-based (30 vs 70)
-ggplot(selected_cpgs, aes(x = CpG_site, y = mean_diff)) +
-  geom_bar(stat = "identity") +
-  theme(axis.text.x = element_text(angle = 90, hjust = 1)) +
-  xlab("CpG Sites") +
-  ylab("Mean Difference in Methylation") +
-  ggtitle("Differential Methylation Bar Plot")
 
-# Volcano plot of differential methylation; age-based (30 vs 70)
-ggplot(selected_cpgs, aes(x = mean_diff, y = -log10(p_val))) +
+# Define significance threshold
+significance_threshold <- 0.05
+
+# Modify ggplot for volcano plot
+ggplot(selected_cpgs, aes(x = mean_diff, y = -log10(p_val), color = p_val < significance_threshold)) +
   geom_point() +
+  scale_color_manual(values = c("grey", "red")) +  # Non-significant in grey, significant in red
   xlab("Mean Difference in Methylation") +
   ylab("-log10(p-value)") +
   ggtitle("Volcano Plot of Differential Methylation")
 
-# 3D UMAP 
-
-# Assuming 'cpg_data' is a dataframe containing methylation data
-# Using the same simulated data as above for illustration
-
-# Applying UMAP
-umap_result <- umap(cpg_data, n_components = 3)
-
-# Convert to DataFrame for visualization
-embedding_df <- as.data.frame(umap_result$layout)
-
-# Plotting 3D UMAP
-plot3d(embedding_df$V1, embedding_df$V2, embedding_df$V3, col = "red", size = 1)
-axes3d()
-title3d("3D UMAP of Methylation Data", line = 2.5)
-
+# Analysis 1-- Elastic Net Regression for Methylation Age Estimation
 # Assuming 'X_train', 'X_test', 'y_train', 'y_test' are your training and test sets
 # Load or generate your dataset here
 
@@ -145,6 +132,22 @@ y_pred <- predict(enet_model, X_test)
 # Calculate Mean Squared Error
 mse <- mean((y_test - y_pred)^2)
 print(paste("Mean Squared Error:", mse))
+
+# 3D UMAP 
+
+# Assuming 'cpg_data' is a dataframe containing methylation data
+# Using the same simulated data as above for illustration
+
+# Applying UMAP
+umap_result <- umap(cpg_data, n_components = 3)
+
+# Convert to DataFrame for visualization
+embedding_df <- as.data.frame(umap_result$layout)
+
+# Plotting 3D UMAP
+plot3d(embedding_df$V1, embedding_df$V2, embedding_df$V3, col = "red", size = 1)
+axes3d()
+title3d("3D UMAP of Methylation Data", line = 2.5)
 
 
 
