@@ -34,7 +34,6 @@ The intersection of genomics and AI has revolutionized the field of biological a
 Predictive modeling in biology involves creating algorithms to forecast biological states or outcomes based on genomic data. This process requires a blend of biological knowledge, statistical techniques, and computational proficiency. In the context of age estimation, these models interpret methylation data to provide accurate assessments of biological age.
 
 ## Analysis 1: Differential Methylation for Identifying Feature Salience
---fill this in. here is my output below--
 ![image](https://github.com/Quaterniomics/ml4ae/assets/111631655/86bb1e77-0233-4222-8636-d0b809af4ffd)
 
 
