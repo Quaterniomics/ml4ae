@@ -122,10 +122,13 @@ The low-dimensional representation is obtained by optimizing the layout of this 
 The UMAP algorithm can be broken down into three main components:
 
 1. **Neighbor Search**: Identifying nearest neighbors for each point in the dataset, which can be efficiently performed using tree-based search algorithms or approximate nearest neighbor methods.
+![image](https://github.com/Quaterniomics/ml4ae/assets/111631655/a1b1a78b-16b4-48f8-8267-7fb5ccf440fb)
 
 2. **Graph Layout Optimization**: The stochastic gradient descent process to optimize the embedding. This step is crucial for preserving the topological structure and involves balancing attractive and repulsive forces between points in the lower-dimensional space.
+![image](https://github.com/Quaterniomics/ml4ae/assets/111631655/b9ee9980-ccc8-4ee9-bd24-371efaa46933)
 
 3. **Initialization**: Often, UMAP uses spectral initialization (like in Laplacian Eigenmaps) to start the optimization process.
+![image](https://github.com/Quaterniomics/ml4ae/assets/111631655/59e49119-fbb8-4857-aad9-15ab9afa83d9)
 
 In terms of information theory, UMAP's optimization process can be viewed as minimizing the cross-entropy between two fuzzy topological representations (high-dimensional and low-dimensional), aligning with the principle of minimum information loss.
 
