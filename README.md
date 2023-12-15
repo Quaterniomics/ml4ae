@@ -146,6 +146,7 @@ In biomedical research, 3D UMAP becomes particularly relevant due to its ability
 
 ## Interactive 3D UMAP
 Interactive 3D UMAP visualizations enhance the user's ability to explore and interpret the complex relationships in the data. Tools like Plotly or Bokeh can be used to create interactive plots that allow rotation, zooming, and tooltip information, providing a more intuitive understanding of the data's structure.
+
 ![image](https://github.com/Quaterniomics/ml4ae/assets/111631655/155972d7-952a-439f-ad82-765a5e419a4b)
 
 ## Conclusion
