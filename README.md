@@ -51,6 +51,9 @@ The observation of consistent methylation in both young and old samples can have
 
 In summary, the presence of consistently high methylation levels at certain CpG sites across a wide age range suggests their importance in maintaining certain genomic functions across the lifespan. This discovery opens avenues for further research, integrating various omics data and functional studies to fully understand the biological significance of these epigenetic markers.
 
+After all is said and done, another way to visualize feature differential in your dataset is to perform a volcano plot as well as a heatmap, barplot, etc. Also, try playing with the code, setting other feature comparisons of interest beside extrema in age disparity.
+![image](https://github.com/Quaterniomics/ml4ae/assets/111631655/158c3876-e91f-4e09-94a2-e3c170e08938)
+
 
 
 ## Analysis 2: Elastic Net Regression
