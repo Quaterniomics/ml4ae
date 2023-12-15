@@ -91,12 +91,6 @@ The identification of distinct clusters underscores the potential of methylation
 
 ## Analysis 3: 3D UMAP Visualization
 
-# 3D UMAP: A Technical and Rigorous Overview
-
-
-
-
-
 
 
 
