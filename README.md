@@ -34,6 +34,7 @@ The intersection of genomics and AI has revolutionized the field of biological a
 Predictive modeling in biology involves creating algorithms to forecast biological states or outcomes based on genomic data. This process requires a blend of biological knowledge, statistical techniques, and computational proficiency. In the context of age estimation, these models interpret methylation data to provide accurate assessments of biological age.
 
 ## Analysis 1: Differential Methylation for Identifying Feature Salience
+
 ![image](https://github.com/Quaterniomics/ml4ae/assets/111631655/86bb1e77-0233-4222-8636-d0b809af4ffd)
 
 
@@ -69,6 +70,7 @@ Elastic Net Regression finds application in various fields:
 
 3. **Image Processing**: For image reconstruction and noise reduction, where pixels are often correlated.
 ### LaTeX Representation
+
 \$min β { N1 ∑ i=1N (yi −xiT β)2 +λ[α∥β∥1 + 12 (1−α)∥β∥22 ]}\$
 
 ### Conclusions
@@ -83,6 +85,7 @@ To classify muscle tissue samples based on their epigenetic patterns, shedding l
 K-means clustering is employed to categorize samples into distinct groups, revealing unique methylation patterns indicative of various aging states.
 
 ### LaTeX Representation
+
 \$min S ∑ i=1k ∑ x∈Si ∥x−μi∥2\$
 
 ### Conclusions
@@ -121,12 +124,14 @@ The low-dimensional representation is obtained by optimizing the layout of this 
 The UMAP algorithm can be broken down into three main components:
 
 1. **Neighbor Search**: Identifying nearest neighbors for each point in the dataset, which can be efficiently performed using tree-based search algorithms or approximate nearest neighbor methods.
+
+   
 ![image](https://github.com/Quaterniomics/ml4ae/assets/111631655/a1b1a78b-16b4-48f8-8267-7fb5ccf440fb)
 
-2. **Graph Layout Optimization**: The stochastic gradient descent process to optimize the embedding. This step is crucial for preserving the topological structure and involves balancing attractive and repulsive forces between points in the lower-dimensional space.
+3. **Graph Layout Optimization**: The stochastic gradient descent process to optimize the embedding. This step is crucial for preserving the topological structure and involves balancing attractive and repulsive forces between points in the lower-dimensional space.
 ![image](https://github.com/Quaterniomics/ml4ae/assets/111631655/b9ee9980-ccc8-4ee9-bd24-371efaa46933)
 
-3. **Initialization**: Often, UMAP uses spectral initialization (like in Laplacian Eigenmaps) to start the optimization process.
+4. **Initialization**: Often, UMAP uses spectral initialization (like in Laplacian Eigenmaps) to start the optimization process.
 ![image](https://github.com/Quaterniomics/ml4ae/assets/111631655/59e49119-fbb8-4857-aad9-15ab9afa83d9)
 
 In terms of information theory, UMAP's optimization process can be viewed as minimizing the cross-entropy between two fuzzy topological representations (high-dimensional and low-dimensional), aligning with the principle of minimum information loss.
